@@ -33,6 +33,7 @@ function Nav() {
   }, []);
   function handleSubmit(e) {
     e.preventDefault();
+
     try {
       async function getPhoto(term) {
         dispatch(setLoadingState(true));
@@ -48,6 +49,7 @@ function Nav() {
         dispatch(setLoadingState(false));
       }
       getPhoto(inputValue);
+      window.scrollTo(0, 0);
     } catch (e) {
       console.log(e);
     }
