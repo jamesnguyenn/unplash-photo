@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/jamesnguyenn/unplash-photo/static/css/main.d722cb0d.css",
-    "main.js": "/jamesnguyenn/unplash-photo/static/js/main.ec7a69f4.js",
-    "index.html": "/jamesnguyenn/unplash-photo/index.html",
-    "main.d722cb0d.css.map": "/jamesnguyenn/unplash-photo/static/css/main.d722cb0d.css.map",
-    "main.ec7a69f4.js.map": "/jamesnguyenn/unplash-photo/static/js/main.ec7a69f4.js.map"
+    "main.css": "/unplash-photo/static/css/main.d722cb0d.css",
+    "main.js": "/unplash-photo/static/js/main.07781349.js",
+    "index.html": "/unplash-photo/index.html",
+    "main.d722cb0d.css.map": "/unplash-photo/static/css/main.d722cb0d.css.map",
+    "main.07781349.js.map": "/unplash-photo/static/js/main.07781349.js.map"
   },
   "entrypoints": [
     "static/css/main.d722cb0d.css",
-    "static/js/main.ec7a69f4.js"
+    "static/js/main.07781349.js"
   ]
 }
