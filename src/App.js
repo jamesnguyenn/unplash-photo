@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import "./App.css";
 import Explore from "./Explore";
+import Footer from "./Footer";
 import { handleClickLoadMore } from "./handleClickLoadMore";
 import ListsPhoto from "./ListsPhoto.js";
 import Nav from "./Nav";
@@ -21,6 +22,7 @@ function App() {
         <Nav />
         <Explore />
         <ListsPhoto photos={state.photos} />
+        <Footer></Footer>
       </div>
     </ValuesContext.Provider>
   );
