@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useEffect, useReducer } from "react";
+import "./App.css";
+import Explore from "./Explore";
+import { handleClickLoadMore } from "./handleClickLoadMore";
+import ListsPhoto from "./ListsPhoto.js";
+import Nav from "./Nav";
+import { initialState, reducer } from "./state";
+
+export const ValuesContext = createContext();
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    handleClickLoadMore(state, dispatch);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ValuesContext.Provider value={{ state, dispatch, handleClickLoadMore }}>
+      <div className="wrapper px-5">
+        <Nav />
+        <Explore />
+        <ListsPhoto photos={state.photos} />
+      </div>
+    </ValuesContext.Provider>
   );
 }
 
