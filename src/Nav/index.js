@@ -49,7 +49,7 @@ function Nav() {
         dispatch(setLoadingState(false));
       }
       getPhoto(inputValue);
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 100);
     } catch (e) {
       console.log(e);
     }
