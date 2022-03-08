@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/jamesnguyenn/unplash-photo/static/css/main.d722cb0d.css",
+    "main.js": "/jamesnguyenn/unplash-photo/static/js/main.ec7a69f4.js",
+    "index.html": "/jamesnguyenn/unplash-photo/index.html",
+    "main.d722cb0d.css.map": "/jamesnguyenn/unplash-photo/static/css/main.d722cb0d.css.map",
+    "main.ec7a69f4.js.map": "/jamesnguyenn/unplash-photo/static/js/main.ec7a69f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d722cb0d.css",
+    "static/js/main.ec7a69f4.js"
+  ]
+}
