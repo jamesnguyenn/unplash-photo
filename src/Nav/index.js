@@ -118,6 +118,11 @@ const SearchWrapperInput = styled.div`
     border: none;
     outline: none;
   }
+  input:active {
+    border: none;
+    background-color: transparent;
+    outline: none;
+  }
   button {
     display: none;
   }
