@@ -114,15 +114,14 @@ const SearchWrapperInput = styled.div`
     font-family: "Poppins", sans-serif;
     font-size: 0.9rem;
   }
-  input:focus {
-    border: none;
-    outline: none;
-  }
+  input:hover,
+  input:focus,
   input:active {
     border: none;
     background-color: transparent;
     outline: none;
   }
+
   button {
     display: none;
   }
