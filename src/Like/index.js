@@ -64,7 +64,7 @@ function Liked() {
 
   return (
     <>
-      <Link to="/">
+      <Link to="/unplash-photo">
         <div
           ref={header}
           className=" py-[25px] px-3 fixed top-0 left-0 w-full z-50 bg-transparent flex items-center justify-between transition-all delay-300 ease-in  "

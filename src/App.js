@@ -45,17 +45,17 @@ function App() {
       <div className="wrapper px-5 w-full relative">
         <Routes>
           <Route
-            path="/"
+            path="/unplash-photo"
             element={<ListsPhoto photos={state.photos} />}
           ></Route>
-          <Route path="/liked" element={<Liked />}></Route>
+          <Route path="/unplash-photo/liked" element={<Liked />}></Route>
         </Routes>
         <div className="fixed bottom-0 left-0 w-full flex items-center justify-center mb-[20px] z-1000000">
           <div className="bg-[#ccc] bg-opacity-70 px-5 py-2 flex items-center justify-center gap-[20px] text-grey rounded-lg">
-            <Link to="/">
+            <Link to="/unplash-photo">
               <HomeIcon></HomeIcon>
             </Link>
-            <Link to="/liked">
+            <Link to="/unplash-photo/liked">
               <FavoriteIcon></FavoriteIcon>
             </Link>
           </div>
