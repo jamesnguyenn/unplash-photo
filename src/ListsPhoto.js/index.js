@@ -11,7 +11,6 @@ import { setLikePhotoLists } from "../state";
 
 function ListsPhoto({ photos }) {
   const { state, dispatch } = useContext(ValuesContext);
-
   const photosIDs = state.likedPhotoIDs;
 
   function handleClickHeart(id) {
@@ -30,8 +29,8 @@ function ListsPhoto({ photos }) {
     <>
       <Nav />
       <Explore />
-      <div className="photos  grid md:grid-cols-2  gap-10 ">
-        {photos.map((photo) => {
+      <div className="photos  grid md:grid-cols-2  gap-10">
+        {photos.map((photo, index) => {
           return (
             <div
               key={photo.id}
@@ -43,7 +42,7 @@ function ListsPhoto({ photos }) {
                 className="h-full w-full object-cover cursor-pointer rounded-[30px]"
                 alt={`${photo?.user.first_name}`}
               ></img>
-              <div className="absolute left-0 bottom-0 flex flex-col justify-center bg-[#f3f5f7] w-full h-[90px]  z-10 px-7 ">
+              <div className="absolute left-0 bottom-0 flex flex-col justify-center bg-[#f3f5f7] w-full h-[90px]  px-7 ">
                 {/* <h2 className="font-body font-bold text-[16px] mb-3">
                   {photo.author}
                 </h2> */}

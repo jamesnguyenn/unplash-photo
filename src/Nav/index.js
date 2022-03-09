@@ -1,8 +1,10 @@
 import React, { memo, useContext, useEffect, useRef } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
-import { makeStyles } from "@mui/styles";
 import styled from "styled-components";
+import { handleScroll } from "../handleScroll";
+import { scrollToTop } from "../scrollToTop";
+import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
+import SearchIcon from "@mui/icons-material/Search";
+import { makeStyles } from "@mui/styles";
 import { handleClickSearch } from "./handleClickSearch";
 import { ValuesContext } from "../App";
 import {
@@ -12,27 +14,26 @@ import {
   setSearchPhotoLists,
 } from "../state";
 import axios from "../axios";
+import { IconButton } from "@mui/material";
+
 function Nav() {
   const navBar = useRef();
   const searchWrapper = useRef();
+  const input = useRef();
   const searchIcon = useRef();
   const cancelIcon = useRef();
   const cancelClasses = useStyles();
   const { state, dispatch } = useContext(ValuesContext);
   const inputValue = state.input;
-  const handleScroll = (e) => {
-    if (window.scrollY > 50) {
-      navBar.current.classList.remove("bg-transparent");
-      navBar.current.classList.add("bg-white");
-    } else {
-      navBar.current.classList.add("bg-transparent");
-      navBar.current.classList.remove("bg-white");
-    }
-  };
+  function scroll() {
+    handleScroll(navBar.current);
+  }
   useEffect(() => {
-    document.addEventListener("scroll", handleScroll);
+    scrollToTop();
+    document.addEventListener("scroll", scroll);
     return () => {
-      document.removeEventListener("scroll", handleScroll);
+      scrollToTop();
+      document.removeEventListener("scroll", scroll);
     };
   }, []);
   function handleSubmit(e) {
@@ -63,7 +64,7 @@ function Nav() {
       ref={navBar}
       className="flex fixed top-0 left-0 w-full z-50 bg-transparent items-center justify-between px-[30px] py-[20px] transition-all delay-300 ease-in "
     >
-      <div className="w-[40px] h-[40px]">
+      <div className="w-[40px] h-[40px] cursor-pointer" onClick={scrollToTop}>
         <img
           className="w-full h-full object-cover"
           src="https://avatars.githubusercontent.com/u/66525324?v=4"
@@ -74,9 +75,10 @@ function Nav() {
         <SearchWrapperInput>
           <form onSubmit={handleSubmit}>
             <input
+              ref={input}
               value={inputValue}
               type="text"
-              placeholder="Search..."
+              placeholder="Search keywords > Enter"
               onChange={(e) => dispatch(setInputValue(e.target.value))}
             />
             <button type="submit"></button>
@@ -84,11 +86,15 @@ function Nav() {
         </SearchWrapperInput>
         <SearchWrapperIcon
           onClick={() => {
-            handleClickSearch(searchIcon, searchWrapper, cancelIcon);
+            handleClickSearch(searchIcon, searchWrapper, cancelIcon, input);
           }}
         >
           <SearchIcon ref={searchIcon} className="width-1rem text-[2.0rem]" />
-          <ClearIcon ref={cancelIcon} className={cancelClasses.root} />
+
+          <BackspaceOutlinedIcon
+            ref={cancelIcon}
+            className={cancelClasses.root}
+          />
         </SearchWrapperIcon>
       </SearchWrapper>
     </div>

@@ -11,6 +11,9 @@ module.exports = {
         body: ["Poppins"],
         sans: ["Helvetica", "Arial", "sans-serif"],
       },
+      animation: {
+        "spin-fast": "spin 0.4s linear infinite",
+      },
     },
   },
   plugins: [],
