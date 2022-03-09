@@ -1,17 +1,15 @@
 import { createContext, useEffect, useReducer } from "react";
 import "./App.css";
-import Explore from "./Explore";
 import Footer from "./Footer";
 import { handleClickLoadMore } from "./handleClickLoadMore";
 import ListsPhoto from "./ListsPhoto.js";
-import Nav from "./Nav";
 import { initialState, reducer } from "./state";
-
+import { Routes, Route } from "react-router-dom";
+import Liked from "./Like";
 export const ValuesContext = createContext();
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
     handleClickLoadMore(state, dispatch);
   }, []);
@@ -19,9 +17,13 @@ function App() {
   return (
     <ValuesContext.Provider value={{ state, dispatch, handleClickLoadMore }}>
       <div className="wrapper px-5">
-        <Nav />
-        <Explore />
-        <ListsPhoto photos={state.photos} />
+        <Routes>
+          <Route
+            path="/"
+            element={<ListsPhoto photos={state.photos} />}
+          ></Route>
+          <Route path="/liked" element={<Liked />}></Route>
+        </Routes>
         <Footer></Footer>
       </div>
     </ValuesContext.Provider>

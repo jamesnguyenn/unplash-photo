@@ -2,9 +2,8 @@ import axios from "./axios";
 import { setLoadingState, setPageURL, setPhotos } from "./state";
 
 export function handleClickLoadMore(state, dispatch) {
-  console.log(state.page);
   try {
-    async function getRandomPhotos(state) {
+    async function getPhotos(state) {
       dispatch(setLoadingState(true));
 
       const request = await axios.get("/search/photos", {
@@ -15,12 +14,11 @@ export function handleClickLoadMore(state, dispatch) {
         },
       });
       dispatch(setPhotos(request.data.results));
-
       dispatch(setPageURL());
       dispatch(setLoadingState(false));
       return request;
     }
-    getRandomPhotos(state);
+    getPhotos(state);
   } catch (e) {
     console.log(e);
   }

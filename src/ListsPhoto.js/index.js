@@ -1,14 +1,37 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import Button from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { IconButton } from "@mui/material";
+import Explore from "../Explore";
+import Nav from "../Nav";
+import { ValuesContext } from "../App";
+import { setLikePhotoLists } from "../state";
 
 function ListsPhoto({ photos }) {
+  const { state, dispatch } = useContext(ValuesContext);
+
+  const photosIDs = state.likedPhotoIDs;
+
+  function handleClickHeart(id) {
+    if (!photosIDs.find((ele) => ele === id)) {
+      dispatch(setLikePhotoLists([...photosIDs, id]));
+      localStorage.setItem("postID-liked", JSON.stringify([...photosIDs, id]));
+    } else {
+      const index = photosIDs.findIndex((ele) => ele === id);
+      const [...newActiveHeart] = photosIDs;
+      newActiveHeart.splice(index, 1);
+      dispatch(setLikePhotoLists([...newActiveHeart]));
+      localStorage.setItem("postID-liked", JSON.stringify([...newActiveHeart]));
+    }
+  }
   return (
     <>
+      <Nav />
+      <Explore />
       <div className="photos  grid md:grid-cols-2  gap-10 ">
         {photos.map((photo) => {
-          console.log(photo);
           return (
             <div
               key={photo.id}
@@ -35,8 +58,14 @@ function ListsPhoto({ photos }) {
                       {photo?.user.first_name}
                     </span>
                   </div>
-                  <div className="cursor-pointer text-[23px]">
-                    <FontAwesomeIcon icon={faHeart} />
+                  <div className="cursor-pointer text-[23px] ">
+                    <IconButton onClick={() => handleClickHeart(photo.id)}>
+                      {photosIDs.find((ele) => ele === photo.id) ? (
+                        <FavoriteIcon sx={{ color: "red" }} />
+                      ) : (
+                        <FavoriteBorderIcon />
+                      )}
+                    </IconButton>
                   </div>
                 </div>
               </div>

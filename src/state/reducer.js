@@ -4,12 +4,14 @@ import {
   SET_LOADING_STATE,
   SET_INPUT_VALUE,
   SET_SEARCH_PHOTO_LISTS,
+  SET_LIKED_PHOTO_ID,
 } from "./constants";
 export const initialState = {
   photos: [],
   page: 1,
   input: "Vietnam",
   isLoading: false,
+  likedPhotoIDs: JSON.parse(localStorage.getItem("postID-liked")) || [],
 };
 
 export const reducer = (state, actions) => {
@@ -38,6 +40,11 @@ export const reducer = (state, actions) => {
       return {
         ...state,
         photos: [...actions.payload],
+      };
+    case SET_LIKED_PHOTO_ID:
+      return {
+        ...state,
+        likedPhotoIDs: [...actions.payload],
       };
     default:
       throw new Error(`Invalid action ${actions.type}`);

@@ -4,6 +4,7 @@ import {
   SET_LOADING_STATE,
   SET_INPUT_VALUE,
   SET_SEARCH_PHOTO_LISTS,
+  SET_LIKED_PHOTO_ID,
 } from "./constants";
 export function setPhotos(payload) {
   return {
@@ -35,6 +36,13 @@ export function setInputValue(payload) {
 export function setSearchPhotoLists(payload) {
   return {
     type: SET_SEARCH_PHOTO_LISTS,
+    payload,
+  };
+}
+
+export function setLikePhotoLists(payload) {
+  return {
+    type: SET_LIKED_PHOTO_ID,
     payload,
   };
 }

@@ -20,16 +20,20 @@ function Nav() {
   const cancelClasses = useStyles();
   const { state, dispatch } = useContext(ValuesContext);
   const inputValue = state.input;
+  const handleScroll = (e) => {
+    if (window.scrollY > 50) {
+      navBar.current.classList.remove("bg-transparent");
+      navBar.current.classList.add("bg-white");
+    } else {
+      navBar.current.classList.add("bg-transparent");
+      navBar.current.classList.remove("bg-white");
+    }
+  };
   useEffect(() => {
-    document.addEventListener("scroll", (e) => {
-      if (window.scrollY > 50) {
-        navBar.current.classList.remove("bg-transparent");
-        navBar.current.classList.add("bg-white");
-      } else {
-        navBar.current.classList.add("bg-transparent");
-        navBar.current.classList.remove("bg-white");
-      }
-    });
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
   }, []);
   function handleSubmit(e) {
     e.preventDefault();
@@ -59,7 +63,6 @@ function Nav() {
       ref={navBar}
       className="flex fixed top-0 left-0 w-full z-50 bg-transparent items-center justify-between px-[30px] py-[20px] transition-all delay-300 ease-in "
     >
-      {console.log("Nav render")}
       <div className="w-[40px] h-[40px]">
         <img
           className="w-full h-full object-cover"
